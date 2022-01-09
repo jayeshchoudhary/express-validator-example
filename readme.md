@@ -1,16 +1,16 @@
-When working with Node.js it is very common to receive data in `request (body, query, params)`, and based on that data perform some operations on DB and return the results.
+When working with Node.js it is very common to receive data in `request (body, query, params)`, and based on that data we perform some operations on DB and return the results.
 
-Since the data will be coming from external resources like Client-side UI (browsers), programs that consume our API, Postman (API testing client), so we need to make sure that the data we are receiving should be properly validated before passing it to the controller or DB.
+Since the data will be coming from external resources like Client-side UI (browsers), programs that consume our API, Postman (API testing client) etc. so we need to make sure that the data we are receiving should be properly validated before passing it to the controller or DB.
 
 In this tutorial, we will be taking a look at the best and easiest way to validate request data using [express-validator](https://express-validator.github.io/docs/) package
 
 > Not validating data can lead to unwanted data, program crashing, malicious hacker attack so it is always recommended to validate data first before doing any operation on it
 
-> 💡 all the examples included in the tutorial are available on my github repo
+> 💡 all the examples included in the tutorial are available on my [github repo](https://github.com/jayeshchoudhary/express-validator-example)
 
 ## Basic Project Setup
 
-In this tutorial, we will be building an express.js app with some API endpoints (POST - /api/user) and validate incoming req data
+In this tutorial, we will be building an express.js app with some API endpoints `POST - /api/user` and validate incoming req data
 
 ```bash
 # Create the project folder
@@ -347,3 +347,24 @@ router.post(
   UserController.addUser
 );
 ```
+
+## Conclusion
+
+- successfully used express-validator package to easily validate input for Node.js apps
+- Schema based validation is even faster and convenient
+- Also can sanitize data for improved security
+
+## References
+
+[1] [Form Data Validation in Node.js with express-validator <br>
+](https://stackabuse.com/form-data-validation-in-nodejs-with-express-validator/)
+[2] [How to make input validation simple and clean in your Express.js app
+](https://www.freecodecamp.org/news/how-to-make-input-validation-simple-and-clean-in-your-express-js-app-ea9b5ff5a8a7/) <br>
+
+## Links
+
+1. express-validator official [docs](https://express-validator.github.io/docs/)
+2. validator.js [docs](https://www.npmjs.com/package/validator)
+3. Find all the code examples in my [github repo](https://github.com/jayeshchoudhary/express-validator-example)
+
+<a href="https://www.buymeacoffee.com/jayeshchoudhary" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 50px !important;width: 200px !important;" ></a>
