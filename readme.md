@@ -27,6 +27,7 @@ $ npm install express
 ```
 
 **Project structure** <br>
+
 we will be following best practice by using modular approach where everything is placed in a different file, this will make our code structured and maintainable
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1641746320375/SEB3krM1R.png)
@@ -148,7 +149,7 @@ let's write user validation of data on various fields
 ```javascript
 const { body } = require("express-validator");
 
-const userDataValidateSchema = [
+const userDataValidateChainableAPI = [
   body("userName")
     .exists({ checkFalsy: true })
     .withMessage("User name is required")
@@ -212,7 +213,9 @@ In the code above we have used below validation middleware
 
 > 💡 To explore other validator functions refer to [validator.js](https://www.npmjs.com/package/validator)
 
-#### Now using express-validator, your /routes/user.router.js will be like this:
+Now using `userDataValidateChainableAPI`, your `/routes/user.router.js` will be like this:
+
+**user.router.js**
 
 ```javascript
 router.post("/", userDataValidateSchema, UserController.addUser);
@@ -255,7 +258,7 @@ module.exports = { addUser };
 
 ### Error Object
 
-When the POST - /api/user is hit then we will get errors (if we have not provided req.body as required by our schema)
+When the `POST - /api/user` is hit then we will get errors (if we have not provided req.body as required by our schema)
 
 Below is how the error object will look like
 
@@ -283,7 +286,7 @@ Below is how the error object will look like
 
 The cain api for validation provided by `express-validator` is great but it can also get very hard to read if a single field has many validations. then a single validation middleware will have chain function hell
 
-To solve this problem there is also schema-based validation in `express-validator`. this offers a clear approach where instead of chaining new function for new validation we have an object with key and values as validation schema at one place.
+To solve this problem there is also **schema-based validation** in `express-validator`. this offers a clear approach where instead of chaining new function for new validation we have an object with key and values as validation schema at one place.
 
 `checkSchema()` takes schema object as parameter and will be placed inside our user router middleware
 
@@ -334,6 +337,8 @@ const userDataValidateSchemaBased = checkSchema({
 To use schema based object our user.router.js will look like this
 
 checkSchema() is used for schema validation
+
+**user.router.js**
 
 ```javascript
 router.post(
