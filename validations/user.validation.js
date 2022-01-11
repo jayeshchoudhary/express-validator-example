@@ -27,7 +27,7 @@ const userDataValidate = (req, res, next) => {
 
 const { body } = require("express-validator");
 
-const userDataValidateChainableAPI = [
+const userDataValidateChainMethod = [
   body("userName")
     .exists({ checkFalsy: true })
     .withMessage("User name is required")
@@ -104,6 +104,6 @@ const userDataValidateSchemaBased = {
 
 module.exports = {
   userDataValidate,
-  userDataValidateChainableAPI,
+  userDataValidateChainMethod,
   userDataValidateSchemaBased,
 };

@@ -1,6 +1,6 @@
 When working with Node.js it is very common to receive data in `request (body, query, params)`, and based on that data we perform some operations on DB and return the results.
 
-Since the data will be coming from external resources like Client-side UI (browsers), programs that consume our API, Postman (API testing client) etc. so we need to make sure that the data we are receiving should be properly validated before passing it to the controller or DB.
+Since the data will be coming from external resources like Client-side UI (browsers), programs that consume our API, Postman (API testing client) etc. hence we need to make sure that the data we are receiving should be properly validated before passing it to the controller or DB.
 
 In this tutorial, we will be taking a look at the best and easiest way to validate request data using [express-validator](https://express-validator.github.io/docs/) package
 
@@ -97,7 +97,7 @@ module.exports = { userDataValidate };
 
 ## Traditional way of data validation
 
-let's validate user data received from frontend forms without using any external libraries
+let's validate user data received by hitting `/api/user` without using any external libraries
 
 **user.validation.js**
 
@@ -121,7 +121,7 @@ const userDataValidate = (req, res, next) => {
 module.exports = { userDataValidate };
 ```
 
-> as you can see there are lot of validation if() checks. and if our api had 10-15 keys then the validation function would be so long and prone to errors
+> as you can see there are lot of validation if() checks. and if our api had 10-15 keys then the validation function will going to be very long and prone to errors
 
 ## Introduction to `express-validator`
 
@@ -149,7 +149,7 @@ let's write user validation of data on various fields
 ```javascript
 const { body } = require("express-validator");
 
-const userDataValidateChainableAPI = [
+const userDataValidateChainMethod = [
   body("userName")
     .exists({ checkFalsy: true })
     .withMessage("User name is required")
@@ -218,7 +218,7 @@ Now using `userDataValidateChainableAPI`, your `/routes/user.router.js` will be 
 **user.router.js**
 
 ```javascript
-router.post("/", userDataValidateSchema, UserController.addUser);
+router.post("/", userDataValidateChainMethod, UserController.addUser);
 ```
 
 ## Error handing
@@ -284,7 +284,7 @@ Below is how the error object will look like
 
 ## Schama based validation
 
-The cain api for validation provided by `express-validator` is great but it can also get very hard to read if a single field has many validations. then a single validation middleware will have chain function hell
+The chain api for validation provided by `express-validator` is great but it can also get very hard to read if a single field has many validations. then a single validation middleware will have chain function hell
 
 To solve this problem there is also **schema-based validation** in `express-validator`. this offers a clear approach where instead of chaining new function for new validation we have an object with key and values as validation schema at one place.
 
@@ -348,6 +348,10 @@ router.post(
 );
 ```
 
+## Testing `/api/user` using Postman
+
+![postman test](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u3joc26z5gb0ht9rwhz5.png)
+
 ## Conclusion
 
 - successfully used express-validator package to easily validate input for Node.js apps
@@ -356,8 +360,7 @@ router.post(
 
 ## References
 
-[1] [Form Data Validation in Node.js with express-validator <br>
-](https://stackabuse.com/form-data-validation-in-nodejs-with-express-validator/)
+[1] [Form Data Validation in Node.js with express-validator](https://stackabuse.com/form-data-validation-in-nodejs-with-express-validator/)
 [2] [How to make input validation simple and clean in your Express.js app
 ](https://www.freecodecamp.org/news/how-to-make-input-validation-simple-and-clean-in-your-express-js-app-ea9b5ff5a8a7/) <br>
 
@@ -367,4 +370,4 @@ router.post(
 2. validator.js [docs](https://www.npmjs.com/package/validator)
 3. Find all the code examples in my [github repo](https://github.com/jayeshchoudhary/express-validator-example)
 
-<a href="https://www.buymeacoffee.com/jayeshchoudhary" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 50px !important;width: 200px !important;" ></a>
+<a href="https://www.buymeacoffee.com/jayeshchoudhary" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 10px !important;" ></a>
